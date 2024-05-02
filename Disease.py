@@ -47,8 +47,8 @@ if st.button("Analyze Symptoms"):
         st.error("Please enter some symptoms to analyze.")
 
 # Disclaimer
-st.markdown("### Disclaimer")
-st.markdown("**Consult with a Doctor before making any decisions based on this analysis.**")
+# st.markdown("### Disclaimer")
+# st.markdown("**Consult with a Doctor before making any decisions based on this analysis.**")
 
 
 
