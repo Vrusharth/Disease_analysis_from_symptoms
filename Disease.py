@@ -3,7 +3,7 @@ import google.generativeai as genai
 import re
 
 # Configuration for Google's generative AI
-API_KEY = 'AIzaSyBMyahqmUveOUsRpGgcAI9ErYOETz8i-oM'  # Be sure to replace with your actual API key
+API_KEY = 'AIzaSyBU1BhybBEaYGRKM45KWvomihSXgYvV22U'  # Be sure to replace with your actual API key
 genai.configure(api_key=API_KEY)
 model = genai.GenerativeModel('gemini-pro')
 
@@ -106,7 +106,7 @@ if st.button("Analyze Symptoms"):
 
 # app= FastAPI()
 # symptoms=input("Enter the symptoms")
-# API_KEY = 'AIzaSyBMyahqmUveOUsRpGgcAI9ErYOETz8i-oM'
+# API_KEY = 'AIzaSyBU1BhybBEaYGRKM45KWvomihSXgYvV22U'
 
 # genai.configure(
 # api_key = API_KEY
