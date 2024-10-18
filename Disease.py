@@ -1,6 +1,7 @@
 import streamlit as st
 import google.generativeai as genai
 import re
+import pandas as pd
 
 # Configuration for Google's generative AI
 API_KEY = 'AIzaSyBU1BhybBEaYGRKM45KWvomihSXgYvV22U'  # Be sure to replace with your actual API key
