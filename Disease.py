@@ -1,12 +1,14 @@
 import streamlit as st
 import google.generativeai as genai
 import re
-import pandas as pd
+import os
 
-# Configuration for Google's generative AI
-API_KEY = 'AIzaSyBrX0GtL5TqwCaVKQEldpQnlH2DVdFVX4I'  # Be sure to replace with your actual API key
+# Set up your API key securely (best practice: use secrets or env variable)
+API_KEY = 'AIzaSyBrX0GtL5TqwCaVKQEldpQnlH2DVdFVX4I'  # Replace with your actual API key
 genai.configure(api_key=API_KEY)
-model = genai.GenerativeModel('gemini-pro')
+
+# Load the correct model (Gemini 1.5 Pro)
+model = genai.GenerativeModel(model_name="gemini-1.5-pro")
 
 def remove_asterisks(text):
     """Remove all asterisks from the text."""
@@ -29,27 +31,33 @@ def analyze_symptoms(symptoms):
 
     Scope: Ensure the analysis pertains only to human health issues.
     Clarity: If symptom details are insufficient for a definitive analysis, indicate this as a limitation in the findings.
-   
+
     Purpose: This structured analysis supports clinical decision-making by providing a systematic approach to symptom evaluation.
+
+    Symptoms:
     """
-    chat = model.start_chat(history=[])
-    response = chat.send_message(system_prompt + symptoms)
+    chat = model.start_chat()
+    response = chat.send_message(system_prompt + "\n" + symptoms)
     return remove_asterisks(response.text)
 
 # Streamlit UI
-st.title("Symptom Analyzer")
+st.title("🩺 Symptom Analyzer")
 symptoms = st.text_area("Enter your symptoms here:", height=150)
 if st.button("Analyze Symptoms"):
-    if symptoms:
-        result = analyze_symptoms(symptoms)
-        st.subheader("Analysis Results")
-        st.write(result)
+    if symptoms.strip():
+        try:
+            result = analyze_symptoms(symptoms)
+            st.subheader("Analysis Results")
+            st.write(result)
+        except Exception as e:
+            st.error(f"Something went wrong: {e}")
     else:
-        st.error("Please enter some symptoms to analyze.")
+        st.warning("Please enter some symptoms to analyze.")
 
-# Disclaimer
-# st.markdown("### Disclaimer")
-# st.markdown("**Consult with a Doctor before making any decisions based on this analysis.**")
+# Optional Disclaimer
+st.markdown("### ⚠️ Disclaimer")
+st.markdown("**This tool does not replace medical advice. Always consult a healthcare professional for medical concerns.**")
+
 
 
 
