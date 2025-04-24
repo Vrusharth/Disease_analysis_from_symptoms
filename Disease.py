@@ -4,7 +4,7 @@ import re
 import pandas as pd
 
 # Configuration for Google's generative AI
-API_KEY = 'AIzaSyBU1BhybBEaYGRKM45KWvomihSXgYvV22U'  # Be sure to replace with your actual API key
+API_KEY = 'AIzaSyBrX0GtL5TqwCaVKQEldpQnlH2DVdFVX4I'  # Be sure to replace with your actual API key
 genai.configure(api_key=API_KEY)
 model = genai.GenerativeModel('gemini-pro')
 
